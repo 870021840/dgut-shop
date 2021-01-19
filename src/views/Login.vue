@@ -59,12 +59,11 @@ export default {
           //发送提交请求
           loginAPI(this.loginForm.username, this.loginForm.password).then(
             res => {
-              console.log(res);
-              if (res.data.meta.status !== 200)
+              if (res.meta.status !== 200)
                 return this.$message.error("用户名或密码错误");
               //登录成功的逻辑
               //1.保存token
-              setToken(res.data.data.token);
+              setToken(res.data.token);
               //2.跳转到后台页面
               this.$router.push("/");
             }

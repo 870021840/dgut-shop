@@ -1,5 +1,6 @@
 html,body {
     height: 100%;
+    min-width: 1136px;
 }
 
 
@@ -7,3 +8,13 @@ html,body {
     margin: 0;
     padding: 0;
 }
+
+
+.el-breadcrumb {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+
+  .el-table {
+      margin-top: 15px;
+  }

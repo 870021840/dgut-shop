@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "@/utils/storage";
 
 //全局定义一个单例的axios对象
 const request = axios.create({
@@ -6,6 +7,34 @@ const request = axios.create({
   baseURL: process.env.VUE_APP_BASEURL,
   timeout: 5000
 });
+
+// 请求拦截，所有的请求都会到这里来
+request.interceptors.request.use(
+  config => {
+    // Do something before request is sent
+    const token = getToken();
+    if (token !== undefined) {
+      //添加头部认证信息
+      config.headers["Authorization"] = token;
+    }
+    return config;
+  },
+  error => {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+// 所有的响应都会到这里来
+request.interceptors.response.use(
+  response => {
+    // Do something before response is sent
+    return response.data;
+  },
+  error => {
+    // Do something with response error
+    return Promise.reject(error);
+  }
+);
 
 // 导出axios对象
 export default request;

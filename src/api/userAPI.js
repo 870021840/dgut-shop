@@ -9,5 +9,13 @@ export function loginAPI(username, password) {
     }
   });
 }
-
-export function xxx() {}
+// 用户数据列表
+export function getUsers(query, pagenum, pagesize) {
+  return request.get("/users", {
+    params: {
+      query,
+      pagenum,
+      pagesize
+    }
+  });
+}
