@@ -1,7 +1,7 @@
 <template>
-  <el-container>
-    <!-- <dg-header></dg-header> -->
-    <el-header>
+  <el-container direction="vertical">
+    <dg-header></dg-header>
+    <!-- <el-header>
       <div class="logo">
         <img src="@/assets/logo.png" alt="" />
         <span>xxx管理系统</span>
@@ -9,7 +9,7 @@
       <el-button type="primary" size="small" @click="logoutClick"
         >退出登录</el-button
       >
-    </el-header>
+    </el-header> -->
     <el-container>
       <el-aside :width="collapse ? '64px' : '200px'">
         <div class="sep" @click="collapseClick">|||</div>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-// import DGHeader from "@/components/DGHeader.vue";
+import DGHeader from "@/components/DGHeader.vue";
 
 import { clearToken, getActivePath, setActivePath } from "@/utils/storage";
 import { getMenu } from "@/api/rightAPI";
@@ -73,7 +73,7 @@ export default {
   },
 
   components: {
-    // "dg-header": DGHeader
+    "dg-header": DGHeader
   },
 
   methods: {
@@ -97,7 +97,6 @@ export default {
     //获取左侧菜单数据
     requestMenu() {
       getMenu().then(res => {
-        console.log(res.data);
         if (res.meta.status !== 200)
           return this.$message.error("请求左侧菜单有误");
         this.menus = res.data;

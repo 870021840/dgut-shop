@@ -19,3 +19,15 @@ export function getUsers(query, pagenum, pagesize) {
     }
   });
 }
+// 根据 ID 查询用户信息
+export function getUserById(userid) {
+  return request.get(`/users/${userid}`);
+}
+
+// 编辑用户提交
+export function editUser(id, email, mobile) {
+  return request.put("/users/" + id, {
+    email,
+    mobile
+  });
+}
