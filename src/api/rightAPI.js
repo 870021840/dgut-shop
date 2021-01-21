@@ -14,3 +14,20 @@ export function getRightList() {
 export function getRightTree() {
   return request.get("/rights/tree");
 }
+
+//  角色列表
+export function getRoles() {
+  return request.get("/roles");
+}
+
+// 删除每个角色指定的某个权限
+export function deleteRight(roleId, rightId) {
+  return request.delete(`/roles/${roleId}/rights/${rightId}`);
+}
+
+// 角色授权
+export function authorization(roleId, rids) {
+  return request.post(`/roles/${roleId}/rights`, {
+    rids: rids
+  });
+}
